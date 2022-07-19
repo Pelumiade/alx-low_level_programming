@@ -1,33 +1,25 @@
 #include "main.h"
 
 /**
-  * _strspn - search a string for a set of bytes
-  * @s: source string
-  * @accept: accepted string
-  *
-  * Return: number of bytes in the init segment
-  */
-unsigned int _strspn(char *s, char *accept)
+ * _strpbrk - function that searches a string for any of a set of bytes
+ *
+ * @s:first occurrence in the string
+ *
+ * @accept: matches one of the bytes, or @NULL if no such byte
+ *
+ * Return: a pointer to the byte
+ */
+char *_strpbrk(char *s, char *accept)
 {
-	unsigned int a = 0, b, t = 0;
-
-	while (accept[a])
-	{
-		b = 0;
-
-		while (s[b] != 32)
+	int i;
+		while (*s)
 		{
-			if (accept[a] == s[b])
+			for (i = 0; accept[i]; i++)
 			{
-				t++;
+				if (*s == accept[i])
+					return (s);
 			}
-
-			b++;
+			s++;
 		}
-
-		a++;
-	}
-
-	return (t);
+	return (NULL);
 }
-
